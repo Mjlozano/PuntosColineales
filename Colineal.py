@@ -29,19 +29,21 @@ class Colineal:
 
         # devuelve todos los conjuntos colineales
         linea.esColineal()
+        for p in self.getPoints():
+            plt.plot([p.x], [p.y], "ro-")
 
         for i in linea.esColineal():
-            for j in i.puntos:
-                plt.plot([j.x], [j.y], "ro-")
+            plt.plot(
+                [i.puntos[0].x, i.puntos[1].x, i.puntos[2].x],
+                [i.puntos[0].y, i.puntos[1].y, i.puntos[2].y],
+                "ro-",
+            )
         plt.show()
 
 
 class SegmentoDeLinea:
     def __init__(self, listaDePuntos):
         self.listaDePuntos = listaDePuntos
-
-    def pendiente(self, y1, y0, x1, x0):
-        return (y1 - y0) / (x1 - x0)
 
     # Verica si los puntos dados son colineales
     def collinear(self, a, b, c):
