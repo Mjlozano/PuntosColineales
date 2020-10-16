@@ -20,24 +20,28 @@ class Colineal:
         del p[0]
         for i in p:
             pt = i.split()
-            tempPoint = Punto(int(pt[0]), int(pt[1]))
+            tempPoint = Punto(float(pt[0]), float(pt[1]))
             listaPuntos.append(tempPoint)
         return listaPuntos
 
     def dibujar(self):
         linea = SegmentoDeLinea(self.getPoints())
 
-        # devuelve todos los conjuntos colineales
-        linea.esColineal()
+        # grafica los puntos no colineales
         for p in self.getPoints():
             plt.plot([p.x], [p.y], "ro-")
 
+        # devuelve todos los conjuntos colineales
+        linea.esColineal()
+
+        # grafica los puntos colineales con sus lineas
         for i in linea.esColineal():
             plt.plot(
                 [i.puntos[0].x, i.puntos[1].x, i.puntos[2].x],
                 [i.puntos[0].y, i.puntos[1].y, i.puntos[2].y],
                 "ro-",
             )
+
         plt.show()
 
 
@@ -66,7 +70,6 @@ class SegmentoDeLinea:
                     linea = Linea(p1, p2, p3)
                     tempList.append(linea)
             i += 1
-
         for val in tempList:
             if val != None:
                 conjuntoColineal.append(val)
