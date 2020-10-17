@@ -34,7 +34,6 @@ class Colineal:
 
         # grafica los puntos colineales con sus lineas
         for i in linea.esColineal():
-
             plt.plot(
                 [i.puntos[0].x, i.puntos[1].x, i.puntos[2].x],
                 [i.puntos[0].y, i.puntos[1].y, i.puntos[2].y],
@@ -54,7 +53,6 @@ class SegmentoDeLinea:
     def esColineal(self):
         # Genera todos las combinaciones posibles de conjuntos de 3 puntos
         comb = combinations(self.listaDePuntos, 3)
-        print(len(comb))
         conjuntoColineal = []
         for item in comb:
             p1, p2, p3 = item[0], item[1], item[2]
