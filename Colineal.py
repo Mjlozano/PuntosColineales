@@ -1,5 +1,6 @@
 from Punto import Punto
 from Linea import Linea
+from itertools import combinations
 import matplotlib.pyplot as plt
 
 
@@ -31,17 +32,14 @@ class Colineal:
         for p in self.getPoints():
             plt.plot([p.x], [p.y], "ro-")
 
-        # devuelve todos los conjuntos colineales
-        linea.esColineal()
-
         # grafica los puntos colineales con sus lineas
         for i in linea.esColineal():
+
             plt.plot(
                 [i.puntos[0].x, i.puntos[1].x, i.puntos[2].x],
                 [i.puntos[0].y, i.puntos[1].y, i.puntos[2].y],
                 "ro-",
             )
-
         plt.show()
 
 
@@ -54,24 +52,13 @@ class SegmentoDeLinea:
         return (b.x - a.x) * (c.y - a.y) == (c.x - a.x) * (b.y - a.y)
 
     def esColineal(self):
-        tempList = []
+        # Genera todos las combinaciones posibles de conjuntos de 3 puntos
+        comb = combinations(self.listaDePuntos, 3)
+        print(len(comb))
         conjuntoColineal = []
-        inicial = 0
-        i = 1
-        while i <= len(self.listaDePuntos):
-            if (i + 1) == len(self.listaDePuntos):
-                inicial += 1
-                i = inicial + 1
-            if i >= 1 and (i + 1) <= len(self.listaDePuntos) - 1:
-                p1 = self.listaDePuntos[inicial]
-                p2 = self.listaDePuntos[i]
-                p3 = self.listaDePuntos[i + 1]
-                if self.collinear(p1, p2, p3):
-                    linea = Linea(p1, p2, p3)
-                    tempList.append(linea)
-            i += 1
-        for val in tempList:
-            if val != None:
-                conjuntoColineal.append(val)
-
+        for item in comb:
+            p1, p2, p3 = item[0], item[1], item[2]
+            if self.collinear(p1, p2, p3):
+                linea = Linea(p1, p2, p3)
+                conjuntoColineal.append(linea)
         return conjuntoColineal
