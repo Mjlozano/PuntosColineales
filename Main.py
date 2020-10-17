@@ -10,9 +10,12 @@ def cls():
 
 cls()
 
-fileName = input("Ingrese nombre del archivo:  ")
-
-# Se manda el nombre del archivo para poder ser manipulado
-puntosColineales = Colineal(fileName)
-
-puntosColineales.dibujar()
+try:
+    # Se manda el nombre del archivo para poder ser manipulado
+    fileName = input("Ingrese nombre del archivo:  ")
+    puntosColineales = Colineal(fileName)
+    puntosColineales.dibujar()
+except:
+    print("--------------------------------")
+    print("El archivo que ingresó no existe")
+    print("--------------------------------")
