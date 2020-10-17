@@ -28,17 +28,18 @@ class Colineal:
     def dibujar(self):
         linea = SegmentoDeLinea(self.getPoints())
 
-        # grafica los puntos no colineales
-        for p in self.getPoints():
-            plt.plot([p.x], [p.y], "ro-")
-
         # grafica los puntos colineales con sus lineas
         for i in linea.esColineal():
             plt.plot(
                 [i.puntos[0].x, i.puntos[1].x, i.puntos[2].x],
                 [i.puntos[0].y, i.puntos[1].y, i.puntos[2].y],
-                "ro-",
+                "b",
             )
+
+        # grafica los puntos no colineales
+        for p in self.getPoints():
+            plt.plot([p.x], [p.y], "ro-")
+
         plt.show()
 
 
