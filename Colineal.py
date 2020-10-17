@@ -50,6 +50,10 @@ class SegmentoDeLinea:
     def collinear(self, a, b, c):
         return (b.x - a.x) * (c.y - a.y) == (c.x - a.x) * (b.y - a.y)
 
+    def add(self, p1, p2, p3):
+        linea = Linea(p1, p2, p3)
+        return linea
+
     def esColineal(self):
         # Genera todos las combinaciones posibles de conjuntos de 3 puntos
         comb = combinations(self.listaDePuntos, 3)
@@ -57,6 +61,5 @@ class SegmentoDeLinea:
         for item in comb:
             p1, p2, p3 = item[0], item[1], item[2]
             if self.collinear(p1, p2, p3):
-                linea = Linea(p1, p2, p3)
-                conjuntoColineal.append(linea)
+                conjuntoColineal.append(self.add(p1, p2, p3))
         return conjuntoColineal

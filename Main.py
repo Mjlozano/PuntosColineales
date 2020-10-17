@@ -1,5 +1,4 @@
 from Colineal import Colineal
-from Colineal import SegmentoDeLinea
 
 fileName = input("Ingrese nombre del archivo>>>  ")
 
